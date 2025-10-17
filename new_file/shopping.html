@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Popular Shopping Websites</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1a237e, #283593, #3f51b5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #ffeb3b;
+    margin-bottom: 20px;
+}
+
+#searchContainer {
+    width: 100%;
+    max-width: 750px;
+    margin-bottom: 20px;
+}
+
+#searchContainer input {
+    width: 100%;
+    padding: 14px 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+}
+
+#buttonsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 750px;
+}
+
+button {
+    width: 100%;
+    height: 70px;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    background: #ff9800;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #f57c00;
+    transform: scale(1.03);
+}
+
+button img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+</style>
+</head>
+<body>
+
+<h1>Popular Shopping Websites in India</h1>
+
+<div id="searchContainer">
+    <input type="text" id="searchInput" placeholder="Search website...">
+</div>
+
+<div id="buttonsContainer"></div>
+
+<script>
+// List of 38 popular Indian shopping websites with local logos
+const shoppingSites = [
+    {name: "Amazon India", url: "https://www.amazon.in", logo: "images/amazon.png"},
+    {name: "Flipkart", url: "https://www.flipkart.com", logo: "images/flipkart.png"},
+    {name: "Myntra", url: "https://www.myntra.com", logo: "images/myntra.png"},
+    {name: "Snapdeal", url: "https://www.snapdeal.com", logo: "images/snapdeal.png"},
+    {name: "Tata Cliq", url: "https://www.tatacliq.com", logo: "images/tatacliq.png"},
+    {name: "Nykaa", url: "https://www.nykaa.com", logo: "images/nykaa.png"},
+    {name: "BigBasket", url: "https://www.bigbasket.com", logo: "images/bigbasket.png"},
+    {name: "Grofers", url: "https://www.grofers.com", logo: "images/grofers.png"},
+    {name: "Croma", url: "https://www.croma.com", logo: "images/croma.png"},
+    {name: "Ajio", url: "https://www.ajio.com", logo: "images/ajio.png"},
+    {name: "FabIndia", url: "https://www.fabindia.com", logo: "images/fabindia.png"},
+    {name: "ShopClues", url: "https://www.shopclues.com", logo: "images/shopclues.png"},
+    {name: "Paytm Mall", url: "https://www.paytmmall.com", logo: "images/paytmmall.png"},
+    {name: "Limeroad", url: "https://www.limeroad.com", logo: "images/limeroad.png"},
+    {name: "FirstCry", url: "https://www.firstcry.com", logo: "images/firstcry.png"},
+    {name: "Pepperfry", url: "https://www.pepperfry.com", logo: "images/pepperfry.png"},
+    {name: "Sangeet Electronics", url: "https://www.sangeet.in", logo: "images/sangeet.png"},
+    {name: "Porvika", url: "https://www.porrvika.com", logo: "images/porrvika.png"},
+    {name: "Apollo Pharmacy", url: "https://www.apollopharmacy.in", logo: "images/apollo.png"},
+    {name: "Medlife", url: "https://www.medlife.com", logo: "images/medlife.png"},
+    {name: "Reliance Digital", url: "https://www.reliancedigital.in", logo: "images/reliance.png"},
+    {name: "Voonik", url: "https://www.voonik.com", logo: "images/voonik.png"},
+    {name: "Urban Ladder", url: "https://www.urbanladder.com", logo: "images/urbanladder.png"},
+    {name: "Tjori", url: "https://www.tjori.com", logo: "images/tjori.png"},
+    {name: "Zivame", url: "https://www.zivame.com", logo: "images/zivame.png"},
+    {name: "Clovia", url: "https://www.clovia.com", logo: "images/clovia.png"},
+    {name: "CureFit", url: "https://www.curefit.com", logo: "images/curefit.png"},
+    {name: "Ajio Luxe", url: "https://www.ajio.com/luxe", logo: "images/ajioluxe.png"},
+    {name: "Flipkart Grocery", url: "https://www.flipkart.com/grocery", logo: "images/flipkartg.png"},
+    {name: "Netmeds", url: "https://www.netmeds.com", logo: "images/netmeds.png"},
+    {name: "HealthKart", url: "https://www.healthkart.com", logo: "images/healthkart.png"},
+    {name: "CaratLane", url: "https://www.caratlane.com", logo: "images/caratlane.png"},
+    {name: "Tanishq", url: "https://www.tanishq.co.in", logo: "images/tanishq.png"},
+    {name: "Jabong", url: "https://www.jabong.com", logo: "images/jabong.png"},
+    {name: "Shopper Stop", url: "https://www.shoppersstop.com", logo: "images/shoppersstop.png"},
+    {name: "Reliance Trends", url: "https://www.reliancetrends.com", logo: "images/reliancetrends.png"},
+    {name: "HomeShop18", url: "https://www.homeshop18.com", logo: "images/homeshop18.png"},
+    {name: "Flipkart Fashion", url: "https://www.flipkart.com/fashion", logo: "images/flipkartfashion.png"},
+    {name: "Big Bazaar", url: "https://www.bigbazaar.com", logo: "images/bigbazaar.png"}
+];
+
+const buttonsContainer = document.getElementById("buttonsContainer");
+
+function displayButtons(sites) {
+    buttonsContainer.innerHTML = '';
+    sites.forEach(site => {
+        const btn = document.createElement("button");
+        btn.innerHTML = `<img src="${site.logo}" alt="${site.name}"> ${site.name}`;
+        btn.onclick = () => window.open(site.url, "_blank");
+        buttonsContainer.appendChild(btn);
+    });
+}
+
+// Initial display
+displayButtons(shoppingSites);
+
+// Search filter
+const searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    const filtered = shoppingSites.filter(site => site.name.toLowerCase().includes(query));
+    displayButtons(filtered);
+});
+</script>
+
+</body>
+</html>

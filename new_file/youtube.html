@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Link Helper</title>
+</head>
+<body>
+    <h1>YouTube Video Link</h1>
+    <input type="text" id="youtubeLink" placeholder="Enter YouTube URL">
+    <button onclick="openDownloader()">Open Downloader</button>
+
+    <script>
+        function openDownloader() {
+            const link = document.getElementById('youtubeLink').value;
+            if(link) {
+                // Open a safe online downloader website in a new tab
+                window.open('https://y2mate.com/youtube/' + encodeURIComponent(link), '_blank');
+            } else {
+                alert('Please enter a YouTube link');
+            }
+        }
+    </script>
+</body>
+</html>
